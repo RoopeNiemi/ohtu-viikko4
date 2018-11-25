@@ -2,6 +2,7 @@
 apply plugin: 'java'
 
 apply plugin: 'application'
+apply plugin: "jacoco"
 
 repositories {
     jcenter()
@@ -14,7 +15,20 @@ dependencies {
     compile group: 'org.springframework', name: 'spring-context-support', version: '5.1.2.RELEASE'
     compile group: 'org.springframework', name: 'spring-beans', version: '5.1.2.RELEASE'    
     testCompile 'junit:junit:4.12'
+    testCompile 'org.mockito:mockito-core:2.23.0'
 }
+
+
+
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.destination file("${buildDir}/jacocoHtml")
+    }
+}
+
+
 
 mainClassName = 'ohtu.Main'
 
